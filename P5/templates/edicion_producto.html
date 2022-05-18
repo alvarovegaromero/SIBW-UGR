@@ -1,0 +1,96 @@
+{% extends "padre.html" %}
+
+
+    {% block central %}
+            <section>
+                <form action="editarProducto.php" method="POST"  enctype="multipart/form-data">
+                    <h1>Edición del producto</h1>
+
+                    <p>
+                        <label for="nombre_producto">Nombre del producto: </label>
+                        <input type="text" id="nombre_producto" name="nombre_producto" value="{{producto.nombre_producto}}" required/>
+                    </p>
+
+                    <p>
+                        <label for="foto_portada">Foto portada: </label>
+                        <input type="file" id="foto_portada" name="foto_portada"/>
+                    </p>
+
+                    <img src="{{producto.url_imagen_principal}}" class="imagen_editar_producto">
+
+                    <p>
+                        <label for="marca">Marca: </label>
+                        <input type="text" id="marca" name="marca" value="{{producto.marca}}" required/>
+                    </p>
+                    <p>
+                        <label for="precio">Precio: </label>
+                        <input type="text" id="precio" name="precio" value="{{producto.precio}}" required/>
+                    </p>
+                    <p> <label for="descripcion">Descripcion: </label> </p>
+                        <textarea cols="30" rows="10" id="descripcion" name="descripcion" required>{{producto.descripcion}}</textarea>
+                    
+                    <p> 
+                        <label for="publicado">Publicado: </label>
+                        <input type="checkbox" id="publicado" name="publicado" value="publicado" {% if producto.publicado %}checked{% endif %}/>
+                    </p>
+                    
+                    <p>
+                        <input name="id_producto" type="hidden" value={{ producto.id_producto }} />
+                        <input type="submit" value="Guardar cambios">
+                    </p>
+                </form>
+
+                {% if enlaces|length > 0 %}
+                    <h3>Editar enlaces</h3>
+                    <div class="enlaces">
+                        {% for enlace in enlaces %}
+                            <a href="{{ enlace.url }}">{{ enlace.texto }}</a>
+                            <form action="./borrarEnlace.php" method="POST" class="botoncomentario">
+                                <input id="id_producto_enlace_borrar" name="id_producto_enlace_borrar" type="hidden" value={{ producto.id_producto }} />
+                                <input id="id_enlace_borrar" name="id_enlace_borrar" type="hidden" value={{ enlace.id_enlace }} />
+                                <input class="botoncomentario" type="image" src="images/papelera.png"/>
+                            </form>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <h3>Añadir enlace</h3>
+                <form action="./aniadirEnlace.php" method="POST">
+                    <p>
+                        <label for="texto_enlace">Texto del enlace: </label>
+                        <input type="text" id="texto_enlace" name="texto_enlace" required/>
+                    </p>
+                    <p>
+                        <label for="url_enlace">URL del enlace: </label>
+                        <input type="text" id="url_enlace" name="url_enlace" required/>
+                    </p>
+                    <input id="id_producto" name="id_producto" type="hidden" value={{ producto.id_producto }} />
+                    <input class="botoncomentario" type="image" src="images/aniadir.png"/>
+                </form> 
+
+
+                <h1>Edición de carrusel de imagenes del producto</h1>
+                <h3>Borrar imagenes del producto</h3>
+
+                {% for imagen in imagenes %}
+                <div>
+                    <img src="{{ imagen.ruta }}" alt="Imagen del Equipo" class="imagen_editar_producto">
+
+                    <form action="./borrarImagen.php" method="POST" class="botonproducto"> 
+                        <input id="id_producto_imagen_borrar" name="id_producto_imagen_borrar" type="hidden" value={{ imagen.id_producto }} />
+                        <input id="id_imagen_borrar" name="id_imagen_borrar" type="hidden" value={{ imagen.id_imagen }} />
+                        <input id="boton_borrar_foto" class="botonproducto" type="image" src="images/papelera.png"/>
+                    </form>
+                </div>
+                {% endfor %}
+
+                <h3>Añadir imagenes al producto</h3>
+
+                <form action="./aniadirImagen.php" method="POST" class="botonproducto" enctype="multipart/form-data">
+                    <input type="file" id="fotos_insertar" name="fotos_insertar[]" multiple="multiple"/>           
+                    <input id="id_producto" name="id_producto" type="hidden" value={{ producto.id_producto }} />
+                    <input id="boton_aniadir_foto" class="botonproducto" type="image" src="images/aniadir.png"/>
+                </form>
+
+            </section>
+    {% endblock central %}

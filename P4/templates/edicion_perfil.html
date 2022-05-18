@@ -1,0 +1,45 @@
+{% extends "padre.html" %}
+
+{% block central %}
+    <section>
+        <form action="./editarPerfil.php" method="POST">
+            <p>
+                <label for="username">Usuario</label>
+                <input type="text" id="username" name="username" value="{{user.username}}" required/>
+            </p>
+            <p>
+                <label for="password">Contraseña </label>
+                <input type="password" id="password" name="password" required />
+            </p>
+            <p>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="{{user.email}}" required/>
+            </p>
+            <p>
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" value="{{user.nombre}}" required/>
+            </p>
+            <p>
+                <label for="apellidos">Apellidos</label>
+                <input type="text" id="apellidos" name="apellidos" value="{{user.apellidos}}" required/>
+            </p>
+            <p>
+                <label for="fecha_nacimiento">Fecha de nacimiento</label>
+                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="{{user.fecha_nacimiento}}" required/>
+            </p>
+            <p>
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" value="{{user.telefono}}" required/>
+            </p>
+            <p>
+                <label for="DNI">DNI</label>
+                <input type="text" id="DNI" name="DNI" value="{{user.DNI}}" required/>
+            </p>
+            <p>
+                <input type="submit" value="Editar Datos">
+            </p>
+        </form>
+
+    </section>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "padre.html" %}
+
+    {% block central %}
+            <section>
+                <form action="crearProducto.php" method="POST" enctype="multipart/form-data">
+                    <h1>Creación del producto</h1>
+
+                    <p>
+                        <label for="nombre_producto">Nombre del producto: </label>
+                        <input type="text" id="nombre_producto" name="nombre_producto" required/>
+                    </p>
+
+                    <p>
+                        <label for="foto_portada">Foto portada: </label>
+                        <input type="file" id="foto_portada" name="foto_portada" required/>
+                    </p>
+
+                    <p>
+                        <label for="marca">Marca: </label>
+                        <input type="text" id="marca" name="marca"/>
+                    </p>
+                    <p>
+                        <label for="precio">Precio: </label>
+                        <input type="text" id="precio" name="precio"/>
+                    </p>
+                    <p> <label for="descripcion">Descripcion: </label> </p>
+
+                    <textarea cols="30" rows="10" id="descripcion" name="descripcion" required></textarea>
+
+                    <br><br>
+                    <h3>Galería de imágenes</h3>
+                    <input type="file" id="fotos_insertar" name="fotos_insertar[]" multiple="multiple"/>
+
+                    <br><br>
+    
+                    <h3>Etiquetas</h3>
+                    <input id="etiquetas" name="etiquetas"/>
+                    
+                    <br><br>
+                    <h3>Enlaces</h3>
+                    <p>
+                        <label for="texto_enlace">Texto del enlace: </label>
+                        <input type="text" id="texto_enlace" name="texto_enlace" required/>
+                    </p>
+                    <p>
+                        <label for="url_enlace">URL del enlace: </label>
+                        <input type="text" id="url_enlace" name="url_enlace" required/>
+                    </p>
+
+                    <p>
+                        <input type="submit" value="Crear Producto">
+                    </p>
+                </form>
+            </section>
+    {% endblock central %}

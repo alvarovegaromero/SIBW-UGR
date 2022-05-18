@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Inicio - Granada Sobre Balones</title>
+    <link href="estilos.css" rel="stylesheet" type="text/css" />
+    <script src="comentarios.js"></script>
+  </head>
+
+  <body>
+    <header class="clearfix">
+      <img class="cabecera" src="images/logo.jpg">
+      <h1 class="cabecera"> Granada Sobre Balones </h1>
+      <p class="cabecera">
+        <a href="https://www.granadacf.es">Granada CF</a> &nbsp
+        <a href="https://www.lapreferente.com/E11207/cf-motril">Motril CF</a> &nbsp
+        <a href="https://www.cdchauchina.com/">Chauchina CF</a>
+      </p>
+      <hr/>
+    </header>
+
+    <div class="flex">
+      <div id="comentarios">
+        <h2 align="center"> Comentarios: </h2>
+
+        <div class="comentario" id="postear_comentario">
+          <form>
+            <div>
+              <label for="nombre" class="etiquetayentrada">Nombre:</label><br>
+              <input type="text" id="nombre" name="nombre" class="etiquetayentrada"><br>
+            </div>
+
+            <div>
+              <label for="email" class="etiquetayentrada">Email:</label><br>
+              <input type="text" id="email" name="email" class="etiquetayentrada"><br>
+            </div>
+
+            <div>
+              <label for="opinion" class="etiquetayentrada">Opinion:</label><br>
+              <input type="text" id="opinion" name="opinion" class="etiquetayentrada" onkeydown="corregirComentarioTiempoReal()"><br>
+            </div>
+
+            <button type="button" class="etiquetayentrada" onclick="verificarComentario()"> Enviar Comentario </button>
+          </form>
+          <p id="error"> <p> <!-- para depurar "manualmente" -->
+        </div>
+
+        <div class="comentario">
+          <p class= "autor"> Paco </p>
+          <p class = "fechayhora"> 29/09/2021 </p>
+          <p class = "fechayhora"> 16:27 </p>
+          <p class = "textocomentario">
+            Buen equipo, lo recomiendo para todos aquellos que quieren vivir
+            una experiencia inolvidable.
+          </p>
+        </div>
+
+        <div class="comentario">
+          <p class= "autor"> Ronaldo </p>
+          <p class = "fechayhora"> 31/01/2022 </p>
+          <p class = "fechayhora"> 11:54 </p>
+          <p class = "textocomentario">
+            Tiene sus problemillas en la liga, pero se ve que los jugadores se curran muy
+            en serio lo de levantar copas (de fiesta obviamente).
+          </p>
+        </div>
+
+        <!-- Por si quisiera añadir el comentario manualmente
+        <div class="comentario" id="comentario_usuario">
+          <p class= "autor" id="autor_comentario"> </p>
+          <p class = "fechayhora" id="fecha_comentario"> </p>
+          <p class = "fechayhora" id="hora_comentario"> </p>
+          <p class = "textocomentario" id="texto_comentario"> </p>
+        </div>
+      -->
+      </div>
+
+      <section class="producto">
+          <img class="producto" src="images/escudo1.png">
+          <h1> Cájar CF </h1>
+          <h3> Federacion Andaluza de Futbol </h3>
+          <h3> 1500€ </h3>
+          <p> El Cájar CF es un club de personas con gran potencial que no disponen
+              de los medios para acabar en un equipo de mayor categoría. </p>
+
+          <p> En este equipo han llegado a jugar jugadores del mayor calibre, como el estanquero del pueblo de 40 años,
+              o el panadero, que se tiraba el partido hablando con las señoras en la grada.
+          </p>
+
+          <p> El valor de compra del club es bajo debido a que todo está mal, desde el estadio (que no tiene ni una entrada),
+            hasta la plantilla (que van a los partidos después de haber salido de fiesta).
+          </p>
+
+          <p> <a href="https://www.facebook.com/RecreativoCajar2016/">Enlace FB del Club</a> &nbsp
+          <a href="https://www.resultados-futbol.com/tercera_andaluza_granada/grupo1">Clasificacion del Equipo</a> &nbsp
+          <a href="https://www.resultados-futbol.com/tercera_andaluza_granada2022/grupo1/calendario">Calendario</a></p>
+
+          <p> <a href="https://es-es.facebook.com/"> <img src="images/logofb.png" class="botonsocial"> </a>
+          <a href="https://twitter.com"> <img src="images/logotw.png" class="botonsocial"> </a>
+          <a href="producto_imprimir.html"> <img src="images/logoimprimir.png" class="botonsocial"> </a> </p>
+      </section>
+
+    <aside>
+        <p> <a href="https://www.lapreferente.com/C87-1/regional-preferente-granada/ranking.html">Liga Regional Preferente</a></p>
+        <p> <a href="https://www.siguetuliga.com/liga/andalucia-primera-andaluza-granada/clasificacion">Primera Andaluza Granada</a></p>
+        <p> <a href="https://www.resultados-futbol.com/segunda_andaluza_granada">Segunda Andaluza Granada</a></p>
+        <p> <a href="https://www.resultados-futbol.com/tercera_andaluza_granada">Tercera Andaluza Granada</a></p>
+        <p> <a href="https://www.resultados-futbol.com/cuarta_andaluza_granada_juvenil">Cuarta Andaluza Granada (Juvenil)</a></p>
+        <p> <a href="https://www.andaluzabaloncesto.org/granada/resultados-clubes">Baloncesto en Granada</a></p>
+        <p> <a href="https://www.rfebm.com/competiciones/competicion.php?seleccion=0&id=1006537&id_ambito=0">Balonmano Andalucía</a></p>
+        <button type="button" id="botoncomentarios" onclick="mostrarComentarios()">Comentarios</button>
+      </aside>
+    </div>
+
+    <footer>
+      <p align="center"> © 2022 - Álvaro Vega Romero </p>
+      <p align="center"> Contacto: vegaromeroalvaro@gmail.com </p>
+    </footer>
+
+  </body>
+</html>

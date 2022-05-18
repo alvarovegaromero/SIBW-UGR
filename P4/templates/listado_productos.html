@@ -1,0 +1,50 @@
+{% extends "padre.html" %}
+
+{% block central %}
+    <section>
+        <h2>Listado de Producto</h2>
+
+        <h3>Aniadir Producto</h3>
+        <form class="aniadir_producto" action="creacionProducto.php" method="POST">
+            <input class="submit" id="aniadir_producto" type="image" src="images/aniadir.png" />
+        </form>
+
+        <h3>Buscador de Productos</h3>
+        <form class="producto_buscar" action="buscarProducto.php" method="POST">
+            <input type="text" name="producto_buscar">
+            <input type="submit" value="Buscar producto">
+        </form>
+
+            {% if productos|length == 0 %}
+            <p> No se encontraron productos :( </p>
+            {% endif %}
+
+            {% for producto in productos %}
+                <div class="wrapproducto">
+                    <div class="foto">
+                        <a href="./producto.php?prod={{ producto.id_producto }}"><img class="imagen-lista" src="{{ producto.url_imagen_principal }}" alt="Foto producto"></a>
+                    </div>
+
+                    <div class="info-lista">
+                        <p class="negrita">{{ producto.nombre_producto }}</p>
+                        <p>{{ producto.precio }}€</p>
+                        <p>Descripción: {{ producto.descripcion }}</p>
+                        <p> Etiquetas: {{ producto.etiquetas }}</p>
+                    </div>
+
+                    <div id="opciones_productos">
+                        <form action="./borrarProducto.php" method="POST" class="botonproducto"> 
+                          <input id="id_producto_borrar" name="id_producto_borrar" type="hidden" value={{ producto.id_producto }} />
+                          <input id="boton_borrar_producto" class="botonproducto" type="image" src="images/papelera.png"/>
+                        </form>
+                        <form action="./edicionProducto.php" method="POST" class="botonproducto">
+                          <input id="id_producto_editar" name="id_producto_editar" type="hidden" value={{ producto.id_producto }} />
+                          <input id="boton_editar_producto" class="botonproducto" type="image" src="images/editar.png"/>
+                        </form>
+                      </div>
+                </div>
+            {% endfor %}
+
+            <p><a href="listadoProductos.php">Listar todos los productos</a></p>
+        </section>
+{% endblock %}

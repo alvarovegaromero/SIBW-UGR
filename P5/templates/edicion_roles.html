@@ -1,0 +1,38 @@
+{% extends "padre.html" %}
+
+    {% block central %}
+        <section>
+            <h2>Editar roles</h2>
+
+            <table> <!-- Cada fila es un tr. th y td es columna-->
+            <tr>
+                <th>Usuario</th>
+                <th>Rol</th>
+            </tr>
+            {% for usuario in usuarios %}
+                <tr> <!-- Tantas filas como usuarios -->
+                    <td>{{ usuario.username }}</td> <!-- Columna es nombre de usuario -->
+                    <td> <!-- Columna es un form enviar. Enviar es otra columna -->
+                        <form action="editarRoles.php" method="POST">
+                            <select name="usuario_rol" id="rol" {% if usuario.username == user.username %} disabled {% endif %}> <!-- Evitar que el superusuario cambie su propio rol -->
+                                {% for rol in roles %}
+                                    {% if rol.rol != 'anonimo' %} <!-- Evitar que se cambie los usuarios a 'anonimo' -->
+                                        {% if (rol.rol != usuario.rol) %} <!-- Y al rol previo del usuario -->
+                                            <option value='{"username":"{{ usuario.username }}", "rol":"{{ rol.rol }}"}'>{{ rol.rol }}</option>
+                                        {% else %} <!-- Marcar el rol del usuario como seleccionado -->
+                                            <option value={{ rol.rol }} selected>{{ rol.rol }}</option>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                            <td>
+                                {% if usuario.username != user.username %}
+                                    <input type="submit" value="Actualizar rol"/>
+                                {% endif %}
+                            </td>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endblock central %}

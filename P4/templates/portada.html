@@ -1,0 +1,25 @@
+{% extends "padre.html" %}
+
+  {% block central %}
+    <div class="flex">
+      <section class="wrapper">
+
+        {% for producto in productos %}
+          <div class="box" align="center"> 
+            <a href="./producto.php?prod={{ producto.id_producto }}"> <img class="productos" src="{{ producto.url_imagen_principal }}"> </a> 
+          </div>
+        {% endfor %}
+      </section>
+
+      <aside>
+        <p> <a href="https://www.lapreferente.com/C87-1/regional-preferente-granada/ranking.html">Liga Regional Preferente</a></p>
+        <p> <a href="https://www.siguetuliga.com/liga/andalucia-primera-andaluza-granada/clasificacion">Primera Andaluza Granada</a></p>
+        <p> <a href="https://www.resultados-futbol.com/segunda_andaluza_granada">Segunda Andaluza Granada</a></p>
+        <p> <a href="https://www.resultados-futbol.com/tercera_andaluza_granada">Tercera Andaluza Granada</a></p>
+        <p> <a href="https://www.resultados-futbol.com/cuarta_andaluza_granada_juvenil">Cuarta Andaluza Granada (Juvenil)</a></p>
+        <p> <a href="https://www.andaluzabaloncesto.org/granada/resultados-clubes">Baloncesto en Granada</a></p>
+        <p> <a href="https://www.rfebm.com/competiciones/competicion.php?seleccion=0&id=1006537&id_ambito=0">Balonmano Andalucía</a></p>
+        <p> Proximamente... </p>
+      </aside>
+    </div>
+    {% endblock %}

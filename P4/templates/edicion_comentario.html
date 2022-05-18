@@ -1,0 +1,17 @@
+{% extends "padre.html" %}
+
+{% block central %}
+
+<form method="POST" class="comentario" id="postear_comentario" action="./editarComentario.php">
+    <!-- Si se cumple verificarComentario, llamamos a crearComentario.php -->
+    <div>
+      <label for="opinion" class="etiquetayentrada">Nuevo contenido del Comentario:</label><br>
+      <textarea type="text" id="opinion" name="opinion" class="etiquetayentrada" onkeyup="corregirComentarioTiempoReal({{ palabrotas | json_encode }})" required>{{ comentario.opinion }}</textarea><br>
+    </div>
+
+    <input id="id_comentario" name="id_comentario" type="hidden" value={{ comentario.id_comentario }} /> <!-- Enviamos id_prod, pero de forma oculta -->
+    <input id="id_producto" name="id_producto" type="hidden" value={{ comentario.id_producto }} /> <!-- Enviamos id_prod, pero de forma oculta -->
+    <input class="etiquetayentrada" type="submit" value="Editar Comentario">
+  </form>
+
+{% endblock %}

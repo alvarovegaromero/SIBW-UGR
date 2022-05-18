@@ -1,0 +1,179 @@
+/*Comunes a los html */
+.clearfix {
+  overflow: auto;
+}
+
+img.cabecera {
+  float: left;
+  width: 150px;
+  margin: 5px;
+}
+
+header{
+    margin-left: 20px;
+}
+
+hr{
+  border: 1px solid black;
+}
+
+section{
+  flex:7;
+  margin-left: 2%;
+}
+
+aside{
+  border: 1px solid black;
+  flex:3;
+}
+
+.productos{
+  width:100px;
+  height: 100px;
+}
+
+footer{
+  padding-top: 10px
+}
+
+aside p
+{
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.flex{
+  margin-top: 20px;
+  display:flex;
+}
+
+/* Portada.html */
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  /*grid-template-rows: 135px 135px 135px; no funciona*/
+  grid-gap: 20px;
+}
+
+.box {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+/* Producto.html - Producto_imprimir tiene muchas cosas en común */
+
+img.producto { /*producto, NO productos*/
+  float: right;
+  width: 100px;
+  margin: 0.5%;
+}
+
+section.producto{
+  border: 1px solid black;
+  margin-right: 50px;
+  padding: 15px;
+}
+
+.botonsocial
+{
+  float:right;
+  height: 50px;
+  width: 50px;
+  margin-right: 10px;
+}
+
+/* producto_imprimir.html */
+
+.imagenimprimir
+{
+  height: 130px;
+  width: 130x;
+  float: left;
+  margin-right: 20px;
+}
+
+.noenseniar
+{
+  display: none;
+}
+
+.imprimir{
+  font-family: Arial;
+  margin-right: 200px;
+}
+
+img.imprimir{
+    margin-left: 15%
+    /*margin-right: 20%*/
+}
+
+/*******************************Practica2**************************************/
+
+#botoncomentarios{
+  margin: 5%;
+  width: 140px;
+  height: 40px;
+  font-size: 125%;
+}
+
+#comentarios
+{
+  flex:4;
+  display: none;
+  border: 1px solid black;
+}
+
+.comentario {
+    margin: 2%;
+    border: 1px solid black;
+}
+
+.fechayhora{
+  font-style: italic;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.autor{
+  font-weight: bolder;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.textocomentario
+{
+  margin: 0;
+  padding: 0;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 20px;
+}
+
+.etiquetayentrada
+{
+  margin: 5px;
+  margin-left: 20px;
+}
+
+/* No sirve no sé por qué
+.fechayhora .autor .textocomentario .etiquetayentrada
+{
+  margin-left: 20px;
+}
+*/
+
+#error{
+  margin: 20px;
+  color: red;
+}
+
+#postear_comentario
+{
+  display: block;
+}
+
+#comentario_usuario
+{
+  display: none;
+}

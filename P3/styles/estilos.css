@@ -1,0 +1,150 @@
+/*Comunes a los html */
+.clearfix {
+  overflow: auto;
+}
+
+img.cabecera {
+  float: left;
+  width: 150px;
+  margin: 5px;
+}
+
+header{
+    margin-left: 20px;
+}
+
+hr{
+  border: 1px solid black;
+}
+
+section{
+  flex:7;
+  margin-left: 2%;
+}
+
+aside{
+  border: 1px solid black;
+  flex:3;
+}
+
+.productos{
+  width: 100px;
+  height: 100px;
+}
+
+footer{
+  padding-top: 10px
+}
+
+aside p
+{
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.flex{
+  margin-top: 20px;
+  display:flex;
+}
+
+/* Portada.html */
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  /*grid-template-rows: 135px 135px 135px; no funciona*/
+  grid-gap: 20px;
+}
+
+.box {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+/* Producto.html - Producto_imprimir tiene muchas cosas en común */
+
+section.producto{
+  border: 1px solid black;
+  margin-right: 50px;
+  padding: 15px;
+}
+
+.botonsocial
+{
+  float:left;
+  height: 50px;
+  width: 50px;
+  margin-right: 10px;
+}
+
+#caja_imagenes_producto{
+  float: right;
+  width: 130px;
+}
+
+
+.imagen_producto{
+  height: 130px;
+  width: 130px;
+  margin-top: 10px;
+}
+
+/*******************************Practica2**************************************/
+
+#botoncomentarios{
+  margin: 5%;
+  width: 140px;
+  height: 40px;
+  font-size: 125%;
+}
+
+#comentarios
+{
+  flex:4;
+  display: none;
+  border: 1px solid black;
+}
+
+.comentario {
+    margin: 2%;
+    border: 1px solid black;
+}
+
+.fechayhora{
+  font-style: italic;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.autor{
+  font-weight: bolder;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.textocomentario
+{
+  margin: 0;
+  padding: 0;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 20px;
+}
+
+.etiquetayentrada
+{
+  margin: 5px;
+  margin-left: 20px;
+}
+
+/*sobre el ---.php es la ubicacion relativa*/
+
+#postear_comentario
+{
+  display: block;
+}
+
+#comentario_usuario
+{
+  display: none;
+}

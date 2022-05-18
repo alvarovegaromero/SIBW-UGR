@@ -1,0 +1,52 @@
+
+header
+{
+  margin-left: 15%;
+}
+
+header hr
+{
+  display: none;
+}
+
+header p{
+  display: none;
+}
+
+aside{
+  display: none;
+}
+
+section{
+  font-family: Arial;
+  margin-right: 200px;
+  margin-left: 30px;
+}
+
+#comentarios{
+  display: none;
+}
+
+img.cabecera {
+  float: left;
+  width: 150px;
+  margin: 5px;
+}
+
+img.producto { /*producto, NO productos*/
+  float: right;
+  width: 100px;
+  margin: 0.5%;
+}
+
+.clearfix {
+  overflow: auto;
+}
+
+.sectionextra{
+  display: none;
+}
+
+.imagen_producto{
+  display: none;
+}

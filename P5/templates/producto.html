@@ -1,0 +1,125 @@
+{% extends "padre.html" %}
+
+{% block central %}
+    <div class="flex">
+      <div id="comentarios">
+        <h2 align="center"> Comentarios: </h2>
+
+          {% if user %} <!--- Si esta registrado, permitir que pueda poner comentarios --->
+            <form method="POST" class="comentario" id="postear_comentario" onsubmit="return verificarComentario()" action="./crearComentario.php">
+              <!-- Si se cumple verificarComentario, llamamos a crearComentario.php -->
+              <div>
+                <label for="opinion" class="etiquetayentrada">Opinion:</label><br>
+                <textarea type="text" id="opinion" name="opinion" class="etiquetayentrada" onkeyup="corregirComentarioTiempoReal({{ palabrotas | json_encode }})"></textarea><br>
+              </div>
+
+              <p id="error"> </p> <!-- para enseñar errores -->
+
+              <input id="id_prod" name="id_prod" type="hidden" value={{ producto.id_producto }} /> <!-- Enviamos id_prod, pero de forma oculta -->
+              <input id="username" name="username" type="hidden" value={{ user.username }} /> <!-- Enviamos id_prod, pero de forma oculta -->              
+              <input class="etiquetayentrada" type="submit" value="Enviar Comentario">
+            </form>
+          {% endif %}
+
+        {% for coment in comentarios %}
+        <div class="comentario">
+          <p class= "autor"> {{ coment.username }} </p>
+          <p class = "fechayhora"> {{ coment.fecha }} </p>
+          <p class = "textocomentario"> {{ coment.opinion }} </p>
+
+          {% if coment.id_moderador != -1 %} <!-- Si ha sido moderado, muestralo (y sabemos quien moderó)-->
+            <p class = "comentariomoderado"> Comentario editado por un moderador </p>
+          {% endif %}
+
+          {% if user.rol == 'moderador' or user.rol == 'superusuario' %} <!-- mejor seria quedarse con el rol, y ver permisos del rol -->
+          <div id="opciones_comentarios">
+            <form action="./borrarComentario.php" method="POST" class="botoncomentario"> <!-- form para evitar gente maliciosa -->
+              <input id="id_producto_borrar" name="id_producto_borrar" type="hidden" value={{ coment.id_producto }} />
+              <input id="id_comentario_borrar" name="id_comentario_borrar" type="hidden" value={{ coment.id_comentario }} />
+              <input id="boton_borrar_comentario" class="botoncomentario" type="image" src="images/papelera.png"/>
+            </form>
+            <form action="./edicionComentario.php" method="POST" class="botoncomentario"> <!-- form para evitar gente maliciosa -->
+              <input id="id_producto_editar" name="id_producto_editar" type="hidden" value={{ coment.id_producto }} />
+              <input id="id_comentario_editar" name="id_comentario_editar" type="hidden" value={{ coment.id_comentario }} />
+              <input id="boton_editar_comentario" class="botoncomentario" type="image" src="images/editar.png"/>
+            </form>
+          </div>
+          {% endif %}
+
+        </div>
+        {% endfor %}
+      </div>
+
+      <section class="producto">
+        <div id="caja_imagenes_producto">
+          <img class="imagen_producto" src= "{{ producto['url_imagen_principal'] }}" alt="Imagen Principal del Equipo">
+
+          {% for imagen in imagenes %}
+          <img class="imagen_producto" src="{{ imagen.ruta }}" alt="Imagen del Equipo">
+          {% endfor %}
+        </div>
+
+          <h1> {{ producto['nombre_producto'] }} </h1>
+          <h3> {{ producto['marca'] }} </h3>
+          <h3> {{ producto['precio'] }}€ </h3>
+
+          {% if user.rol == 'gestor' or user.rol == 'superusuario' %}
+            <h3 class="publicado_producto">                    
+              {% if producto.publicado %}
+                Publicado                           
+              {% else %}
+                No publicado
+              {% endif %} 
+            </h3>
+          {% endif %}
+
+          <p> {{ producto['descripcion'] }} </p>
+
+          <p class = "sectionextra"> 
+            {% for enlace in enlaces %}
+            <a href="{{ enlace['url'] }}">{{ enlace['texto'] }}</a> &nbsp
+            {% endfor %}
+          </p>
+
+          {% for etiqueta in etiquetas %}
+          <div class="etiquetas">
+              <p>#{{ etiqueta }}</p>
+          </div>
+          {% endfor %}
+
+          {% if user.rol == 'gestor' or user.rol == 'superusuario' %} <!-- Si es uno de estos, permitir que pueda crear "nuevos etiquetas" -->
+          <form action="aniadirEtiquetas.php" method="POST" id="form-etiquetas">
+              <input id="etiquetas" name="etiquetas" value="{{ producto['etiquetas'] }}"/>
+              <input class="form-etiquetas" type="image" type="image" src="images/editar.png" />
+              <input name="id_producto" type="hidden" value={{ producto.id_producto }} />
+          </form>
+          {% endif %}
+
+
+          {% if user.rol == 'gestor' or user.rol == 'superusuario' %}
+          <form action="./edicionProducto.php" method="POST" id="editar_producto">
+            <input id="id_producto_editar" name="id_producto_editar" type="hidden" value={{ producto['id_producto'] }} />
+            <input id="boton_editar_producto" class="etiquetayentrada" type="submit" value="Editar Producto">
+          </form>
+          {% endif %}
+
+          <p> 
+            <a href="https://es-es.facebook.com/"> <img src="images/logofb.png" class="botonsocial"> </a>
+            <a href="https://twitter.com"> <img src="images/logotw.png" class="botonsocial"> </a>
+            <a href="./producto_imprimir.php?prod={{ producto.id_producto }}"> <img src="images/logoimprimir.png" class="botonsocial"> </a> 
+          </p>
+
+      </section>
+
+    <aside>
+        <p> <a href="https://www.lapreferente.com/C87-1/regional-preferente-granada/ranking.html">Liga Regional Preferente</a></p>
+        <p> <a href="https://www.siguetuliga.com/liga/andalucia-primera-andaluza-granada/clasificacion">Primera Andaluza Granada</a></p>
+        <p> <a href="https://www.resultados-futbol.com/segunda_andaluza_granada">Segunda Andaluza Granada</a></p>
+        <p> <a href="https://www.resultados-futbol.com/tercera_andaluza_granada">Tercera Andaluza Granada</a></p>
+        <p> <a href="https://www.resultados-futbol.com/cuarta_andaluza_granada_juvenil">Cuarta Andaluza Granada (Juvenil)</a></p>
+        <p> <a href="https://www.andaluzabaloncesto.org/granada/resultados-clubes">Baloncesto en Granada</a></p>
+        <p> <a href="https://www.rfebm.com/competiciones/competicion.php?seleccion=0&id=1006537&id_ambito=0">Balonmano Andalucía</a></p>
+        <button type="button" id="botoncomentarios" onclick="mostrarComentarios()">Comentarios</button>
+      </aside>
+    </div>
+{% endblock %}

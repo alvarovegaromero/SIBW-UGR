@@ -1,0 +1,74 @@
+{% extends "padre.html" %}
+
+{% block central %}
+    <div class="flex">
+      <div id="comentarios">
+        <h2 align="center"> Comentarios: </h2>
+
+        <div class="comentario" id="postear_comentario">
+          <form>
+            <div>
+              <label for="nombre" class="etiquetayentrada">Nombre:</label><br>
+              <input type="text" id="nombre" name="nombre" class="etiquetayentrada"><br>
+            </div>
+
+            <div>
+              <label for="email" class="etiquetayentrada">Email:</label><br>
+              <input type="text" id="email" name="email" class="etiquetayentrada"><br>
+            </div>
+
+            <div>
+              <label for="opinion" class="etiquetayentrada">Opinion:</label><br>
+              <input type="text" id="opinion" name="opinion" class="etiquetayentrada" onkeydown="corregirComentarioTiempoReal()"><br>
+            </div>
+
+            <button type="button" class="etiquetayentrada" onclick="verificarComentario()"> Enviar Comentario </button>
+          </form>
+        </div>
+
+        {% for coment in comentarios %}
+        <div class="comentario">
+          <p class= "autor"> {{ coment.nombre }} </p>
+          <p class = "fechayhora"> {{ coment.fecha }} </p>
+          <p class = "textocomentario"> {{ coment.opinion }} </p>
+        </div>
+        {% endfor %}
+      </div>
+
+      <section class="producto">
+        <div id="caja_imagenes_producto">
+          <img class="imagen_producto" src= "{{ producto['url_imagen_principal'] }}" alt="Imagen Principal del Equipo">
+
+          {% for imagen in imagenes %}
+          <img class="imagen_producto" src="{{ imagen.ruta }}" alt="Imagen del Equipo">
+          {% endfor %}
+        </div>
+
+          <h1> {{ producto['nombre_producto'] }} </h1>
+          <h3> {{ producto['marca'] }} </h3>
+          <h3> {{ producto['precio'] }}€ </h3>
+          <p> {{ producto['descripcion'] }} </p>
+
+          <p class = "sectionextra"> 
+            {% for enlace in enlaces %}
+            <a href="{{ enlace['url'] }}">{{ enlace['texto'] }}</a> &nbsp
+            {% endfor %}
+          </p>
+
+          <p class = "sectionextra" > <a href="https://es-es.facebook.com/"> <img src="images/logofb.png" class="botonsocial"> </a>
+          <a href="https://twitter.com"> <img src="images/logotw.png" class="botonsocial"> </a>
+          <a href="./producto_imprimir.php"> <img src="images/logoimprimir.png" class="botonsocial"> </a> </p>
+      </section>
+
+    <aside>
+        <p> <a href="https://www.lapreferente.com/C87-1/regional-preferente-granada/ranking.html">Liga Regional Preferente</a></p>
+        <p> <a href="https://www.siguetuliga.com/liga/andalucia-primera-andaluza-granada/clasificacion">Primera Andaluza Granada</a></p>
+        <p> <a href="https://www.resultados-futbol.com/segunda_andaluza_granada">Segunda Andaluza Granada</a></p>
+        <p> <a href="https://www.resultados-futbol.com/tercera_andaluza_granada">Tercera Andaluza Granada</a></p>
+        <p> <a href="https://www.resultados-futbol.com/cuarta_andaluza_granada_juvenil">Cuarta Andaluza Granada (Juvenil)</a></p>
+        <p> <a href="https://www.andaluzabaloncesto.org/granada/resultados-clubes">Baloncesto en Granada</a></p>
+        <p> <a href="https://www.rfebm.com/competiciones/competicion.php?seleccion=0&id=1006537&id_ambito=0">Balonmano Andalucía</a></p>
+        <button type="button" id="botoncomentarios" onclick="mostrarComentarios()">Comentarios</button>
+      </aside>
+    </div>
+{% endblock %}

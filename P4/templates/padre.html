@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Inicio - Granada Sobre Balones</title>
+    {% block css %} 
+    <link href="../styles/estilos.css" rel="stylesheet" type="text/css" />
+    {% endblock %}
+    <script src="../scripts/comentarios.js"></script>
+  </head>
+
+  <body>
+    <header class="flexcabecera">
+      <a href="./index.php"> <img class="cabecera" src="../images/logo.jpg"> </a>
+
+      <div id="centrocabecera">
+        <h1 class="cabecera"> Granada Sobre Balones </h1>
+        <p class="cabecera">
+          <a href="https://www.granadacf.es">Granada CF</a> &nbsp
+          <a href="https://www.lapreferente.com/E11207/cf-motril">Motril CF</a> &nbsp
+          <a href="https://www.cdchauchina.com/">Chauchina CF</a>
+        </p>
+      </div>
+      
+      {% if user %}
+      <div> 
+        <p> Has iniciado sesión, <strong> {{user.username}} </strong> </p>
+        <p> <a href="./logout.php"> Cerrar Sesión </a> </p>
+        <p> <a href="./perfil.php"> Acceder a mi perfil </a> </p>
+      </div>
+      {% else %}
+
+      <form method="POST" id="login" action="./login.php">
+        <p>
+          <label for="usuario">Usuario:</label>
+          <input type="text" name="usuario" required>
+        </p>
+        <p>
+          <label for="contraseña">Contraseña:</label>
+          <input type="password" name="contraseña" required>
+        </p>
+        <p> <input type="submit" value="Enviar"> </p>
+
+        {% if error %} <!-- Si hay error en el login -->
+        <p class="errorinicioregistro"> Error en el inicio de sesión </p>
+        {% endif %}
+
+        <p> <a href="./registro.php"> No tienes cuenta ¡Registrate! </a> </p>
+      </form>
+
+      {% endif %}
+    </header>
+
+    {% block central %}
+      <p> Parte central </p>
+    {% endblock %}
+
+    <footer>
+      <p align="center"> © 2022 - Álvaro Vega Romero </p>
+      <p align="center"> Contacto: vegaromeroalvaro@gmail.com </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Inicio - Granada Sobre Balones</title>
+    {% block css %} 
+    <link href="../styles/estilos.css" rel="stylesheet" type="text/css" />
+    {% endblock %}
+    <script src="../scripts/comentarios.js"></script>
+  </head>
+
+  <body>
+    <header class="clearfix">
+      <a href="./index.php"> <img class="cabecera" src="../images/logo.jpg"> </a>
+      <h1 class="cabecera"> Granada Sobre Balones </h1>
+      <p class="cabecera">
+        <a href="https://www.granadacf.es">Granada CF</a> &nbsp
+        <a href="https://www.lapreferente.com/E11207/cf-motril">Motril CF</a> &nbsp
+        <a href="https://www.cdchauchina.com/">Chauchina CF</a>
+      </p>
+      <hr/>
+    </header>
+
+    {% block central %}
+      <p> Parte central </p>
+    {% endblock %}
+
+    <footer>
+      <p align="center"> © 2022 - Álvaro Vega Romero </p>
+      <p align="center"> Contacto: vegaromeroalvaro@gmail.com </p>
+    </footer>
+  </body>
+</html>
